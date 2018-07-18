@@ -30,8 +30,12 @@ client.user.setGame(`67N-SYSTEM `,"http://twitch.tv/S-F")
 
 client.on("guildMemberAdd", member => {
   let words = [`Welcome ${member}
-To Server ${member.guild.namr}
+To Server ${member.guild.name}
 `]
+  member.createDM().then(function (channel) {
+  return channel.send(`${words[Math.floor(Math.random() * words.length)]}`) 
+}).catch(console.error)
+})
   member.createDM().then(function (channel) {
   return channel.send(`${words[Math.floor(Math.random() * words.length)]}`) 
 }).catch(console.error)
