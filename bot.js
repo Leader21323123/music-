@@ -32,58 +32,25 @@ client.on("guildMemberAdd", member => {
   let words = [`Welcome ${member}
 To Server ${member.guild.name}
 `]
-  member.createDM().then(function (channel) {
-  return channel.send(`${words[Math.floor(Math.random() * words.length)]}`) 
-}).catch(console.error)
-})
-  member.createDM().then(function (channel) {
-  return channel.send(`${words[Math.floor(Math.random() * words.length)]}`) 
-}).catch(console.error)
-})
-const Client = new Discord.Client({ fetchAllMembers: true });
-var dat = JSON.parse("{}");
-function forEachObject(obj, func) {
-    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
-}
-client.on("ready", () => {
-    var guild;
-    while (!guild)
-        guild = client.guilds.find("name", "- Kingdom OF 67N ◆")
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
-        })
-    })
-})
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("467749626246594571");
-    if (!channel) {
-        console.log("!the channel id it's not correct");
-        return;
-    }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('-');
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("466632282266927124");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
- channel.send(`**
-نورت سيرفر طحن يـ = > ${member}
- تم دعوته من قبل = > ${Invite.inviter}
- رأبط الدعوة = > https://discord.gg/${Invite.code}
-**`) ;         
- }
-            dat[Inv] = Invite.uses;
-       
-       });
-    });
+client.on('voiceStateUpdate', (Codes, ReBeL) => {
+    let channel3 = ["467743925914828810"];
+client.channels.get(channel3)
+ReBeL.guild.member(ReBeL).addRole(ReBeL.guild.roles.find("name", "- 67N KINGDOM  ◆")).then(r => {
+      });
+console.log("Done");
 });
+  client.on('voiceStateUpdate', (codes, ReBeL) => {
+if(ReBeL.voiceChannelID !== "468129294149877760") return console.log("أيرور . ");
+ReBeL.guild.createChannel(ReBeL.user.username , 'voice').then((rebeeel) =>{
+    rebeeel.setParent("468154162102796299");
+ReBeL.guild.members.get(ReBeL.id).setVoiceChannel(rebeeel.id).then((codess) =>{
+  console.log("تــــــم .");
+  let scan = setInterval(()=>{
+  rebeeel.delete();
+  }, 305);
+});
+});
+});
+  
 
 client.login(process.env.BOT_TOKEN);
