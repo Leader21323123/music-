@@ -32,6 +32,10 @@ client.on("guildMemberAdd", member => {
   let words = [`Welcome ${member}
 To Server ${member.guild.name}
 `]
+  member.createDM().then(function (channel) {
+  return channel.send(`${words[Math.floor(Math.random() * words.length)]}`) 
+}).catch(console.error)
+})
 client.on('voiceStateUpdate', (Codes, ReBeL) => {
     let channel3 = ["467743925914828810"];
 client.channels.get(channel3)
