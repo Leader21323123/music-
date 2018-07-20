@@ -194,20 +194,7 @@ client.channels.find('id', '467743101176381462').setName(" . "+rebel+" المت�
 client.channels.find('id', '467743101176381462').setName(" . "+rebel+" المتوآجدين بالرومآت الصوتيهه ");
 }
 });
-client.on('message' , async rebel => {
-    if(rebel.author.bot) return;
-    var ReBeL = client.guilds.get("466632282266927124");
-    let room = ReBeL.channels.get('467743319691100180');
-if(rebel.channel.type == 'dm') return;
-        if (ReBeL.members.voiceChannel < 3 ) return
-const embed = new Discord.RichEmbed() 
-      .setColor("RANDOM")
-              .setFooter(` العدد بالرومآت الصوتيهه : ${ReBeL.members.filter(member => member.voiceChannel).size}`)
-      .setDescription(`\n${ReBeL.members.filter(member => member.voiceChannel).map(m => m.user.tag).join('\n')}`);
-setInterval(() => {
-room.send(embed);
-}, 50*60000);// لو تبي تغير الوقت غير رقم 30 الى عدد الدقائق اللي تبيهه ..
-});
+
  client.on('message', message => {
     var prefix = "#";
   if (message.author.codes) return;
