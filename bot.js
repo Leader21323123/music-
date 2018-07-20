@@ -163,5 +163,94 @@ channel.guild.owner.send(`<@!${channelremover.id}>
  channelr[channelremover.id].deleted = 0;
   },Otime)
   });
+let rebel;
+client.on("ready", async  => {
+    let guild = client.guilds.get("466632282266927124");
+  let users = guild.members.map(member => member.user.id);
+  let i;
+  rebel=0;
+for (i=0 ; i < users.length ; i++) {
+ let   check = guild.members.get(users[i]);
+if(!check.voiceChannelID){
+        continue;
+}else{
+  rebel++;
+}
+}
+client.channels.find('id', '467743101176381462').setName(" . "+rebel+" المتوآجدين بالرومآت الصوتيهه ");
+  client.setInterval(() =>{
+    let d = Date.now()
+  }, 5000);
+});
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    let guild = client.guilds.get("454658969957433344");
+let newUserChannel = newMember.voiceChannel
+let oldUserChannel = oldMember.voiceChannel
+ if(oldUserChannel === undefined && newUserChannel !== undefined) {
+   rebel++;
+client.channels.find('id', '467743101176381462').setName(" . "+rebel+" المتوآجدين بالرومآت الصوتيهه ");
+} else if(newUserChannel === undefined){
+  rebel--;
+client.channels.find('id', '467743101176381462').setName(" . "+rebel+" المتوآجدين بالرومآت الصوتيهه ");
+}
+});
+client.on('message' , async rebel => {
+    if(rebel.author.bot) return;
+    var ReBeL = client.guilds.get("466632282266927124");
+    let room = ReBeL.channels.get('467743319691100180');
+if(rebel.channel.type == 'dm') return;
+        if (ReBeL.members.voiceChannel < 3 ) return
+const embed = new Discord.RichEmbed() 
+      .setColor("RANDOM")
+              .setFooter(` العدد بالرومآت الصوتيهه : ${ReBeL.members.filter(member => member.voiceChannel).size}`)
+      .setDescription(`\n${ReBeL.members.filter(member => member.voiceChannel).map(m => m.user.tag).join('\n')}`);
+setInterval(() => {
+room.send(embed);
+}, 50*60000);// لو تبي تغير الوقت غير رقم 30 الى عدد الدقائق اللي تبيهه ..
+});
+ client.on('message', message => {
+    var prefix = "#";
+  if (message.author.codes) return;
+  if (!message.content.startsWith(prefix)) return;
 
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "ban") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**انت لا تملك الصلاحيات المطلوبه**");
+  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  
+  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
+  if (!message.guild.member(user)
+  .bannable) return message.reply("**يجب ان تكون رتبة البوت اعلي من رتبه الشخص المراد تبنيدة**");
+
+
+  message.guild.member(user).ban(7, user);
+message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! :airplane: **  `)
+
+}
+});
+
+
+
+  client.on('voiceStateUpdate', (codes, ReBeL) => {
+if(ReBeL.voiceChannelID !== "467746536214757376") return console.log("أيرور . ");
+ReBeL.guild.createChannel(ReBeL.user.username , 'voice').then((rebeeel) =>{
+    rebeeel.setParent("467746445592625153");
+ReBeL.guild.members.get(ReBeL.id).setVoiceChannel(rebeeel.id).then((codess) =>{
+  console.log("تــــــم .");
+  let scan = setInterval(()=>{
+if(!ReBeL.voiceChannel) {
+  rebeeel.delete();
+          
+}
+  }, 1700);
+});
+});
+});
 client.login(process.env.BOT_TOKEN);
