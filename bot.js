@@ -110,6 +110,14 @@ console.log(error)
 }
 })
 });
+client.on('message', message => {
+    if (message.content.startsWith("#inv")) {
+
+    message.guild.fetchInvites()
+    .then(invites => message.channel.send(` انت جبت     [${invites.find(invite => invite.inviter.id === message.author.id).uses}]      عضو للسيرفر   `))
+         
+    }
+});
  let channelc = {};
   client.on('channelCreate', async (channel) => {
   const rebellog = client.channels.find("name", "log"),
